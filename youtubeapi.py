@@ -3,20 +3,10 @@
 from googleapiclient.discovery import build
 from googleapiclient.http import HttpRequest
 import httplib2
-# from oauth2client.client import GoogleCredentials
+import os
 
-
-DEVELOPER_KEY = 'AIzaSyCH4TfJsRocyaeigtVXW36M4J68Hg2fDnM'
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
-
-'''
-search_videos = []
-youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
-'''
-
-# credentials = GoogleCredentials.get_application_default()
-
 
 def build_request():
     new_http = httplib2.Http()
@@ -25,7 +15,7 @@ def build_request():
 
 def youtube_search(query, before, after):
     search_videos = []
-    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
+    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, os.environ.get('YOUTUBE_KEY',None))
 
     http = httplib2.Http()
 
